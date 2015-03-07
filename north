@@ -1,0 +1,12 @@
+#
+#Sat Mar 07 13:11:22 UTC 2015
+Description=north
+Type=HTTP
+Authentication=NoAuthentication
+WebIDEUsage=odata_gen
+Name=north
+WebIDEEnabled=true
+CloudConnectorVersion=2
+URL=http\://services.odata.org
+ProxyType=Internet
+WebIDESystem=Northwind
