@@ -9,4 +9,4 @@ WebIDEEnabled=true
 CloudConnectorVersion=2
 URL=http\://services.odata.org
 ProxyType=Internet
-WebIDESystem=Northwind
+WebIDESystem=North
