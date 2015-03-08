@@ -16,8 +16,6 @@ sap.ui.demo.tdg.util.Controller.extend("sap.ui.demo.tdg.view.Detail", {
 		}
 
 		this.getRouter().getRoute("product").attachMatched(this.onRouteMatched, this);
-        
-		this.getView().setModel(new sap.ui.model.json.JSONModel(), "changeProduct");
 
 	},
 
