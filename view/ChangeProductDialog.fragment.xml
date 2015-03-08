@@ -1,0 +1,44 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m">
+    <Dialog
+		title="{i18n>changeProductDialogTitle}"
+		type="Message">
+        <content>
+            <l:Grid
+                defaultSpan="L12 M12 S12"
+                width="auto">
+                <l:content>
+                    <f:SimpleForm id="SimpleFormChange354"
+                        minWidth="1024"
+                        maxContainerCols="2"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        title="{i18n>changeProductDialogFormTitle}"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        columnsL="1"
+                        columnsM="1"
+                        class="editableForm">
+                        <f:content>
+                            <Label text="Name" />
+                            <Input value="{Name}" id="newName"/>
+                            <Label text="Description" />
+                            <Input value="{Description}" id="newDescription"/>
+                        </f:content>
+                    </f:SimpleForm>
+                </l:content>
+            </l:Grid>
+        </content>
+        <beginButton>
+            <Button text="{i18n>changeProductDialogOK}" press="onDialogSave" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>changeProductDialogCancel}" press="onDialogClose" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

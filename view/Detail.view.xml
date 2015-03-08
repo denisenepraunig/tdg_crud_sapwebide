@@ -3,11 +3,21 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
+	
 	<Page
 		showNavButton="{device>/isPhone}"
-		navButtonPress="onNavBack"
 		class="sapUiFioriObjectPage"
 		title="{i18n>detailTitle}">
+		<customHeader>
+            <Toolbar>
+                <Button type="Back" press="onNavBack" />
+                <ToolbarSpacer/>
+                <Label text="{i18n>detailTitle}"/>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://edit" press="onEditPress" ariaLabelledBy="editButtonLabel"/>
+            </Toolbar>
+        </customHeader>
+        
 		<content>
 			<ObjectHeader
 				title="{Name}"

@@ -16,6 +16,8 @@ sap.ui.demo.tdg.util.Controller.extend("sap.ui.demo.tdg.view.Detail", {
 		}
 
 		this.getRouter().getRoute("product").attachMatched(this.onRouteMatched, this);
+        
+		this.getView().setModel(new sap.ui.model.json.JSONModel(), "changeProduct");
 
 	},
 
@@ -105,6 +107,55 @@ sap.ui.demo.tdg.util.Controller.extend("sap.ui.demo.tdg.view.Detail", {
 			productId : this._sProductId,
 			tab: oEvent.getParameter("selectedKey")
 		}, true);
+	},
+	
+	onEditPress : function(oEvent) {
+	    
+	    if (!this.oAlertDialog) {
+			this.oAlertDialog = sap.ui.xmlfragment("sap.ui.demo.tdg.view.ChangeProductDialog", this);
+			this.getView().addDependent(this.oAlertDialog);
+		}
+		this.oAlertDialog.open();
+	},
+
+	saveData : function(oData) {
+	   
+	   var oSendData = oData;
+	   
+	   // read data from the two fields
+	   // this.getView().byId() did not really work on this fragment
+	   oSendData.Description = sap.ui.getCore().byId("newDescription").getValue();
+	   oSendData.Name = sap.ui.getCore().byId("newName").getValue();
+	   
+	   // we don't need those for an update, it is not allowed;
+	   delete oSendData.Supplier;
+	   delete oSendData.Category;
+	   
+	   var sUrl = "/Products( " + oSendData.ID + ")";
+	   var oModel = this.getOwnerComponent().getModel();
+	   
+	   // the merge is very important, otherwise the supplier and category relation gets broken...
+	   oModel.update(sUrl, oSendData, {
+	        merge: true,
+			success : jQuery.proxy(function(mResponse) {
+				console.log("success", mResponse);
+			}, this),
+			error : jQuery.proxy(function(mResponse) {
+				console.log("error", mResponse);
+			}, this)
+		});
+	},
+	
+	onDialogSave : function(oEvent) {
+	    
+        var oData = oEvent.getSource().getBindingContext().getObject();
+	    this.saveData(oData);
+		this.oAlertDialog.close();
+	},
+	
+	onDialogClose : function(oEvent) {
+	    
+		this.oAlertDialog.close();
 	}
 
 });
