@@ -126,6 +126,9 @@ sap.ui.demo.tdg.util.Controller.extend("sap.ui.demo.tdg.view.Detail", {
 	   oSendData.Name = sap.ui.getCore().byId("newName").getValue();
 	   
 	   // we don't need those for an update, it is not allowed;
+	   // yes I am manipulating the original data object here
+	   // it is handy because after sending the data,
+	   // it gets automatically refreshed in the UI
 	   delete oSendData.Supplier;
 	   delete oSendData.Category;
 	   
